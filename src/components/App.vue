@@ -1,18 +1,19 @@
 <template>
-  <div id="app">
+  <div>
     <div v-if="!sheetsLoaded">
       <import></import>
     </div>
 
     <div v-if="sheetsLoaded">
+      <router-view></router-view>
       Sheets loaded
     </div>
   </div>
 </template>
 
 <script>
-import Import from './components/Import.vue'
-import store from './store'
+import Import from './Import.vue'
+import store from './../store'
 
 export default {
   computed: {
@@ -21,7 +22,7 @@ export default {
     },
   },
   components: {
-    Import
+    Import,
   }
 }
 </script>
