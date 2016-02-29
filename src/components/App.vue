@@ -5,14 +5,15 @@
     </div>
 
     <div v-if="sheetsLoaded">
+      <primary-nav></primary-nav>
       <router-view></router-view>
-      Sheets loaded
     </div>
   </div>
 </template>
 
 <script>
 import Import from './Import.vue'
+import PrimaryNav from './PrimaryNav.vue'
 import store from './../store'
 
 export default {
@@ -23,6 +24,7 @@ export default {
   },
   components: {
     Import,
+    PrimaryNav
   }
 }
 </script>
