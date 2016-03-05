@@ -2,10 +2,10 @@
 <nav>
   <ul class="navList">
     <li class="navItem">
-      <a v-link="{ path: '/' }" class="navLink">Import Report</a>
+      <a v-link="{ path: '/', exact: true }" class="navLink">Import Report</a>
     </li>
     <li class="navItem">
-      <a class="navLink">Audits</a>
+      <a v-link="{ path: '/audits' }" class="navLink">Audits</a>
       </li>
   </ul>
 </nav>
