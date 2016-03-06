@@ -4,18 +4,24 @@
   <div class="content">
     <table>
       <tr>
-        <th>A1</th>
+        <th>Auditor 1</th>
         <th>{{ audit.auditorB }}</th>
       </tr>
       <tr>
-        <td>{{ variable.aAnswer }}</td>
-        <td>{{ variable.bAnswer }}</td>
+        <td @click="resolution = variable.aAnswer"
+          class="answerCell">
+          {{ variable.aAnswer }}
+        </td>
+        <td @click="resolution = variable.bAnswer"
+          class="answerCell">
+          {{ variable.bAnswer }}
+        </td>
       </tr>
       <tr>
         <td colspan="2"><input v-model="resolution"></td>
       </tr>
       <tr>
-        <td colspan="2"><button>Resolve</button></td>
+        <td colspan="2"><button @click="resolve">Resolve</button></td>
       </tr>
     </table>
   </div>
@@ -24,7 +30,26 @@
 
 <script>
   export default {
-    props: ['variable', 'audit']
+    props: ['variable', 'audit'],
+
+    data() {
+      return {
+        resolution: this.variable.resolution
+      }
+    },
+
+    methods: {
+      resolve() {
+      }
+    },
+
+    vuex: {
+      actions: {
+        resolve({ dispatch }) {
+          dispatch('RESOLVE', this.variable, this.resolution)
+        }
+      }
+    }
   }
 </script>
 
@@ -48,6 +73,7 @@
   }
 
   input, button {
+    text-align: center;
     width: 66px;
     height: 50px;
   }
@@ -60,6 +86,7 @@
     font: inherit;
     vertical-align: baseline;
   }
+
   table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -75,6 +102,10 @@
     text-align: center;
     vertical-align: middle;
     border: 1px solid #ddd;
+  }
+
+  .answerCell {
+    cursor: pointer;
   }
 }
 </style>

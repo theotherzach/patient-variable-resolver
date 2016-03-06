@@ -82,18 +82,28 @@ const store = new Vuex.Store({
   },
 
   mutations: {
-    LOAD_SHEET_A (state, sheetA) {
+    LOAD_SHEET_A(state, sheetA) {
       state.sheetA = sheetA.filter(row => row[PT_ID_KEY]).map(cleanKeys)
       if (state.sheetB[0]) {
         state.audits = makeAudits(state.sheetB, sheetA)
       }
     },
 
-    LOAD_SHEET_B (state, sheetB) {
+    LOAD_SHEET_B(state, sheetB) {
       state.sheetB = sheetB.filter(row => row[PT_ID_KEY]).map(cleanKeys)
       if (state.sheetA[0]) {
         state.audits = makeAudits(sheetB, state.sheetA)
       }
+    },
+
+    RESOLVE(state, variable, resolution) {
+      const audit = state.audits.filter(audit => audit.patientId === variable.patientId)[0]
+      if (!audit) return console.warn(`No audit found for {variable.patientId}`)
+
+      const stateVar = audit.variables.filter(vari => vari.name === variable.name)[0]
+      if (!stateVar) return console.warn(`No variable found for {variable.patientId}`)
+
+      stateVar.resolution = resolution
     }
   }
 })

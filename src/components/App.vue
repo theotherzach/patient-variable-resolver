@@ -48,6 +48,11 @@ body {
   color: $bodyCopyColor;
   background: #f5f5f5;
 }
+input, button {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  color: $bodyCopyColor;
+}
 h1, h2, h3, h4, strong {
     font-weight: 600;
     color: $headerColor;
@@ -55,4 +60,5 @@ h1, h2, h3, h4, strong {
 p {
     word-spacing: 0.05em;
 }
+
 </style>
