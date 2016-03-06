@@ -135,6 +135,7 @@ export default {
     sheetBIds() {
       return store.state.sheetB.map(row => row[PT_ID_KEY])
     },
+
     sheetADupes() {
       return this.duplicateIdsFor(store.state.sheetA)
     },

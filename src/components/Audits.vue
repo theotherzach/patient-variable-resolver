@@ -11,7 +11,7 @@
         <th @click="sortBy('providerId')" :class="{active: sortKey == 'providerId'}"> Provider <span class="arrow" :class="sortOrders['providerId'] > 0 ? 'asc' : 'dsc'"></th>
         <th @click="sortBy('patientId')" :class="{active: sortKey == 'patientId'}"> Patient ID <span class="arrow" :class="sortOrders['patientId'] > 0 ? 'asc' : 'dsc'"></th>
         <th @click="sortBy('discrepancies')" :class="{active: sortKey == 'discrepancies'}"> Discrepancies <span class="arrow" :class="sortOrders['discrepancies'] > 0 ? 'asc' : 'dsc'"></th>
-        <th @click="sortBy('resolvedDiscrepancies')" :class="{active: sortKey == 'resolvedDiscrepancies'}"> Resolved Discrepancies <span class="arrow" :class="sortOrders['resolvedDiscrepancies'] > 0 ? 'asc' : 'dsc'"></th>
+        <th @click="sortBy('resolvedDiscrepancies')" :class="{active: sortKey == 'resolvedDiscrepancies'}"> Resolved <span class="arrow" :class="sortOrders['resolvedDiscrepancies'] > 0 ? 'asc' : 'dsc'"></th>
         <th @click="sortBy('isReady')" :class="{active: sortKey == 'isReady'}"> Ready? <span class="arrow" :class="sortOrders['isReady'] > 0 ? 'asc' : 'dsc'"></th>
       </tr>
     </thead>
@@ -45,13 +45,14 @@ export default {
 
   data() {
     const sortOrders = {}
-    const keys = 'auditorB providerId patientId discrepancies resolvedDiscrepancies isReady'.split(' ')
+    const keys = Object.keys(store.state.audits[0])
     keys.forEach(key =>  sortOrders[key] = 1)
 
     return {
       filter: '',
       sortKey: '',
-      sortOrders: sortOrders
+      sortOrders: sortOrders,
+      audits: store.state.audits
     }
   },
 
@@ -64,20 +65,6 @@ export default {
   },
 
   computed: {
-
-    audits() {
-      return store.state.sheetB.map(row => {
-        return {
-          auditorB: row[AUDITOR_INITIALS_KEY],
-          providerId: row[PROVIDER_ID_KEY],
-          patientId: row[PT_ID_KEY],
-          discrepancies: 'TBD',
-          resolvedDiscrepancies: 'TBD',
-          isReady: false
-        }
-      })
-    }
-
   }
 }
 </script>
