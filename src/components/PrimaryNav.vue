@@ -19,7 +19,6 @@ export default {
 <style>
 .navList {
   list-style: none;
-  background-color: #444;
   text-align: center;
   padding: 0;
   margin: 0;
@@ -28,7 +27,7 @@ export default {
 .navItem {
   width: 160px;
   border-bottom: none;
-  height: 50px;
+  // height: 50px;
   line-height: 50px;
   font-size: 1.4em;
   display: inline-block;
@@ -37,18 +36,17 @@ export default {
 
 .navLink {
   text-decoration: none;
-  color: #fff;
+  color: #34495e;
   display: block;
-  transition: .3s background-color;
+  transition: .3s color;
 }
 
 .navLink:hover {
-  background-color: #005f5f;
+  border-bottom: 3px solid #42b983;
 }
 
 .v-link-active {
-  background-color: #fff;
-  color: #444;
+  border-bottom: 3px solid #42b983;
   cursor: default;
 }
 

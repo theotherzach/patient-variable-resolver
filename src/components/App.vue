@@ -31,6 +31,17 @@ export default {
 
 <style>
 body {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #34495e;
+}
+h1, h2, h3, h4, strong {
+    font-weight: 600;
+    color: #2c3e50;
+}
+p {
+    word-spacing: 0.05em;
 }
 </style>
