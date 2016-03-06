@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .navList {
   list-style: none;
   text-align: center;
@@ -47,7 +47,6 @@ export default {
 
 .v-link-active {
   border-bottom: 3px solid #42b983;
-  cursor: default;
 }
 
 </style>

@@ -25,21 +25,32 @@ export default {
   components: {
     Import,
     PrimaryNav
-  }
+  },
+  store
 }
 </script>
 
-<style>
+<style lang="scss">
+
+$bodyCopyColor : #34495e;
+$headerColor: #2c3e50;
+$green: #42b983;
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #34495e;
+  color: $bodyCopyColor;
+  background: #f5f5f5;
 }
 h1, h2, h3, h4, strong {
     font-weight: 600;
-    color: #2c3e50;
+    color: $headerColor;
 }
 p {
     word-spacing: 0.05em;

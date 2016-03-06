@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="audits">
   <h1>Audits</h1>
 
   <input class="filter" placeholder="Filter" type="text" v-model="filter">
@@ -18,7 +18,8 @@
     <tbody>
       <tr v-for="audit in audits
         | filterBy filter
-        | orderBy sortKey sortOrders[sortKey]">
+        | orderBy sortKey sortOrders[sortKey]"
+        @click="$router.go({name: 'audit', params: { patientId: audit.patientId }})">
         <td>{{ audit.auditorB }}</td>
         <td>{{ audit.providerId }}</td>
         <td>{{ audit.patientId }}</td>
@@ -69,62 +70,68 @@ export default {
 }
 </script>
 <style lang="scss">
+.audits {
 
-table {
-  border: 2px solid #42b983;
-  border-radius: 3px;
-  background-color: #fff;
-}
+  table {
+    border: 2px solid #42b983;
+    border-radius: 3px;
+    background-color: #fff;
+  }
 
-th {
-  background-color: #42b983;
-  color: rgba(255,255,255,0.66);
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -user-select: none;
-}
+  th {
+    background-color: #42b983;
+    color: rgba(255,255,255,0.66);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -user-select: none;
+  }
 
-td {
-  background-color: #f9f9f9;
-}
+  td {
+    background-color: #f9f9f9;
+  }
 
-th, td {
-  min-width: 120px;
-  padding: 10px 20px;
-}
+  th, td {
+    min-width: 120px;
+    padding: 10px 20px;
+  }
 
-th.active {
-  color: #fff;
-}
+  th.active {
+    color: #fff;
+  }
 
-th.active .arrow {
-  opacity: 1;
-}
+  th.active .arrow {
+    opacity: 1;
+  }
 
-.arrow {
-  display: inline-block;
-  vertical-align: middle;
-  width: 0;
-  height: 0;
-  margin-left: 5px;
-  opacity: 0.66;
-}
+  tr {
+    cursor: pointer;
+  }
 
-.arrow.asc {
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-bottom: 4px solid #fff;
-}
+  .arrow {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    opacity: 0.66;
+  }
 
-.arrow.dsc {
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid #fff;
-}
+  .arrow.asc {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid #fff;
+  }
 
-.filter {
-  margin-bottom: 10px;
+  .arrow.dsc {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #fff;
+  }
+
+  .filter {
+    margin-bottom: 10px;
+  }
 }
 
 </style>
