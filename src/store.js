@@ -84,14 +84,14 @@ const store = new Vuex.Store({
     LOAD_SHEET_A(state, sheetA) {
       state.sheetA = sheetA.filter(row => row[PT_ID_KEY]).map(cleanKeys)
       if (state.sheetB[0]) {
-        state.audits = makeAudits(state.sheetB, sheetA)
+        state.audits = makeAudits(state.sheetB, state.sheetA)
       }
     },
 
     LOAD_SHEET_B(state, sheetB) {
       state.sheetB = sheetB.filter(row => row[PT_ID_KEY]).map(cleanKeys)
       if (state.sheetA[0]) {
-        state.audits = makeAudits(sheetB, state.sheetA)
+        state.audits = makeAudits(state.sheetB, state.sheetA)
       }
     },
 
