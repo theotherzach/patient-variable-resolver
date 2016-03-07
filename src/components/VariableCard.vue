@@ -1,6 +1,6 @@
 <template>
 <div class="variableCard">
-  <div class="title">{{ variable.name }}</div>
+  <div class="title" :class="{ resolved: variable.resolution }">{{ variable.name }}</div>
   <div class="content">
     <table>
       <tr>
@@ -67,6 +67,11 @@
     background: #42b983;
     font-weight: 600;
     color: #fff;
+
+  }
+  .title.resolved {
+    color: #2c3e50;
+    background: #fff;
   }
 
   .content {
