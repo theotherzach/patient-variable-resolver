@@ -53,12 +53,37 @@ input, button {
   font-size: 15px;
   color: $bodyCopyColor;
 }
+
+button {
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid #fff;
+  padding: 12px 20px;
+  border-radius: 25px;
+  transition: all 0.15s ease;
+  margin-bottom: 2em;
+}
+
 h1, h2, h3, h4, strong {
     font-weight: 600;
     color: $headerColor;
 }
 p {
     word-spacing: 0.05em;
+}
+
+button > a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.green {
+  color: #42b983;
 }
 
 </style>

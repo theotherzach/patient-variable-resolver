@@ -79,6 +79,13 @@
 
   input, button {
     text-align: center;
+  }
+
+  button {
+    display: inline;
+  }
+
+  input {
     width: 66px;
     height: 50px;
   }

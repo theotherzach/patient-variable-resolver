@@ -1,17 +1,22 @@
 <template>
 <div>
-  <dl>
-    <dt>Provider</dt>
-    <dd>{{ audit.providerId }}</dd>
-    <dt>Patient</dt>
-    <dd>{{ audit.patientId }}</dd>
-    <dt>Auditor 2</dt>
-    <dd>{{ audit.auditorB }}</dd>
-  </dl>
-  <p>
-  {{ audit.discrepancies }} discrepancies,
-  {{ audit.discrepancies - audit.resolvedDiscrepancies }} remain
-  </p>
+  <div class="container audit__header">
+    <h2>
+      <div>{{ audit.providerId }}</div>
+      <div>{{ audit.patientId }}</div>
+      <div>{{ audit.auditorB }}</div>
+    </h2>
+    <h3>
+      {{ audit.discrepancies }} discrepancies,
+      {{ remainingDiscrepancies }} remain
+      <span v-if="!remainingDiscrepancies" class="green">&#10004;</span>
+    </h3>
+    <p>
+      <button>
+        <a v-link="{ name: 'audit', params: { patientId: nextPtId }}">Next</a>
+      </button>
+    </p>
+  </div>
 
   <div class="container">
     <variable-card v-for="variable in problemVariables"
@@ -34,6 +39,10 @@ export default {
 
   computed: {
 
+    remainingDiscrepancies() {
+      return this.audit.discrepancies - this.audit.resolvedDiscrepancies
+    },
+
     problemVariables() {
       return this.audit.variables.filter(variable => {
         return variable.aAnswer !== variable.bAnswer 
@@ -49,6 +58,22 @@ export default {
         return state.audits.filter(audit => {
             return audit.patientId === this.$route.params.patientId
         })[0]
+      },
+
+      nextPtId(state) {
+        return state.audits.reduce((memo, audit) => {
+          switch (memo) {
+            case null:
+              if (audit.patientId === this.$route.params.patientId) {
+                return "next"
+              }
+              break
+            case "next":
+              return audit.patientId
+            default:
+              return memo
+          }
+        }, null)
       }
 
     }
@@ -60,6 +85,10 @@ export default {
   max-width: 960px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.audit__header {
+  text-align: center;
 }
 
 </style>

@@ -32,6 +32,10 @@ export default {
   font-size: 1.4em;
   display: inline-block;
   margin-right: -4px;
+  .v-link-active {
+    border-bottom: 3px solid #42b983;
+  }
+
 }
 
 .navLink {
@@ -42,10 +46,6 @@ export default {
 }
 
 .navLink:hover {
-  border-bottom: 3px solid #42b983;
-}
-
-.v-link-active {
   border-bottom: 3px solid #42b983;
 }
 
