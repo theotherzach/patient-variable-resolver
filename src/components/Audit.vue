@@ -12,8 +12,15 @@
       <span v-if="!remainingDiscrepancies" class="green">&#10004;</span>
     </h3>
     <p>
-      <button>
-        <a v-link="{ name: 'audit', params: { patientId: nextPtId }}">Next</a>
+      <button v-if="nextPtId">
+        <a v-link="{ name: 'audit', params: { patientId: nextPtId }}">
+          Next
+        </a>
+      </button>
+      <button v-if="!nextPtId">
+        <a v-link="{ path: '/audits'}">
+          Back
+        </a>
       </button>
     </p>
   </div>
@@ -61,19 +68,25 @@ export default {
       },
 
       nextPtId(state) {
-        return state.audits.reduce((memo, audit) => {
-          switch (memo) {
-            case null:
-              if (audit.patientId === this.$route.params.patientId) {
-                return "next"
-              }
-              break
-            case "next":
-              return audit.patientId
-            default:
-              return memo
+        const index = state.audits.indexOf(this.audit)
+        let nextPtId = null
+        for (let i = index + 1; i < state.audits.length; i++) {
+          if (state.audits[i] && !state.audits[i].isReady) {
+            nextPtId = state.audits[i].patientId
+            break
           }
-        }, null)
+        }
+
+        if (nextPtId) { return nextPtId }
+
+        for (let i = 0; i < index; i++) {
+          if (!state.audits[i].isReady) {
+            nextPtId = state.audits[i].patientId
+            break
+          }
+        }
+
+        return nextPtId
       }
 
     }
