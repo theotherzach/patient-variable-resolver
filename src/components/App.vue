@@ -15,6 +15,9 @@
 import Import from './Import.vue'
 import PrimaryNav from './PrimaryNav.vue'
 import store from './../store'
+import XLSX from 'xlsx-browserify-shim'
+
+window.XLSX = XLSX
 
 export default {
   computed: {
@@ -86,4 +89,13 @@ button > a {
   color: #42b983;
 }
 
+.container {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.audit__header {
+  text-align: center;
+}
 </style>

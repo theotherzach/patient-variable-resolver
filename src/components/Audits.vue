@@ -1,6 +1,12 @@
 <template>
 <div class="audits">
-  <h1>Audits</h1>
+  <div class="container audit__header">
+    <h1>Audits</h1>
+
+    <div>
+      <button @click="exportCsv(audits)">Export</button>
+    </div>
+  </div>
 
   <input class="filter" placeholder="Filter" type="text" v-model="filter">
 
@@ -35,6 +41,8 @@
 <script>
 import store from '../store'
 import sheetKeys from '../sheet-keys'
+import exportCsv from '../export-csv'
+
 const {
   PT_ID_KEY,
   AUDITOR_INITIALS_KEY,
@@ -58,6 +66,8 @@ export default {
   },
 
   methods: {
+
+    exportCsv,
 
     sortBy(key) {
       this.sortKey = key

@@ -7,5 +7,7 @@ export default {
 
   DATE_OF_AUDIT_KEY: 'Date of Audit',
 
+  DATE_OF_VISIT_KEY: 'Date of Pt Visit',
+
   PROVIDER_ID_KEY: 'Provider ID',
 }

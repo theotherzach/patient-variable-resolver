@@ -1,10 +1,12 @@
 <template>
 <div>
   <div class="container audit__header">
+    <h1>{{ audit.patientId }}</h1>
+
     <h2>
       <div>{{ audit.providerId }}</div>
-      <div>{{ audit.patientId }}</div>
       <div>{{ audit.auditorB }}</div>
+      <div>{{ audit.dateOfVisit }}</div>
     </h2>
     <h3>
       {{ audit.discrepancies }} discrepancies,
@@ -94,14 +96,5 @@ export default {
 }
 </script>
 <style lang="scss">
-.container {
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.audit__header {
-  text-align: center;
-}
 
 </style>

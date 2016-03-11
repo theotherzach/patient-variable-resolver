@@ -8,7 +8,7 @@ const {
   PT_ID_KEY,
   AUDITOR_INITIALS_KEY,
   QUESTION_KEYS,
-  DATE_OF_AUDIT_KEY,
+  DATE_OF_VISIT_KEY,
   PROVIDER_ID_KEY
 } = sheetKeys
 
@@ -46,6 +46,7 @@ function makeAudits(sheetB, sheetA) {
     })
 
     return {
+      dateOfVisit: row[DATE_OF_VISIT_KEY],
       auditorB: row[AUDITOR_INITIALS_KEY],
       providerId: row[PROVIDER_ID_KEY],
       patientId: row[PT_ID_KEY],
