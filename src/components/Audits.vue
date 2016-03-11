@@ -3,6 +3,11 @@
   <div class="container audit__header">
     <h1>Audits</h1>
 
+    <h3>
+      {{ discrepancies }} discrepancies,
+      {{ remainingDiscrepancies }} remain
+      <span v-if="!remainingDiscrepancies" class="green">&#10004;</span>
+    </h3>
     <div>
       <button @click="exportCsv(audits)">Export</button>
     </div>
@@ -76,6 +81,24 @@ export default {
   },
 
   computed: {
+
+    discrepancies() {
+      return this.audits
+      .reduce((memo, audit) => memo += audit.discrepancies, 0)
+    },
+
+    remainingDiscrepancies() {
+      return this.audits
+      .reduce((memo, audit) => {
+        let resolvedDiscrepancies = 0
+        if (!isNaN(audit.resolvedDiscrepancies)) {
+          resolvedDiscrepancies = audit.resolvedDiscrepancies
+        }
+
+        const remainingDiscrepancies = audit.discrepancies - audit.resolvedDiscrepancies
+        return memo += remainingDiscrepancies
+      }, 0)
+    },
   }
 }
 </script>
