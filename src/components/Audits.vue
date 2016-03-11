@@ -13,33 +13,35 @@
     </div>
   </div>
 
-  <input class="filter" placeholder="Filter" type="text" v-model="filter">
+  <div class="container">
+    <input class="filter" placeholder="Filter" type="text" v-model="filter">
 
-  <table>
-    <thead>
-      <tr>
-        <th @click="sortBy('auditorB')" :class="{active: sortKey == 'auditorB'}"> B Auditor <span class="arrow" :class="sortOrders['auditorB'] > 0 ? 'asc' : 'dsc'"></th>
-        <th @click="sortBy('providerId')" :class="{active: sortKey == 'providerId'}"> Provider <span class="arrow" :class="sortOrders['providerId'] > 0 ? 'asc' : 'dsc'"></th>
-        <th @click="sortBy('patientId')" :class="{active: sortKey == 'patientId'}"> Patient ID <span class="arrow" :class="sortOrders['patientId'] > 0 ? 'asc' : 'dsc'"></th>
-        <th @click="sortBy('discrepancies')" :class="{active: sortKey == 'discrepancies'}"> Discrepancies <span class="arrow" :class="sortOrders['discrepancies'] > 0 ? 'asc' : 'dsc'"></th>
-        <th @click="sortBy('resolvedDiscrepancies')" :class="{active: sortKey == 'resolvedDiscrepancies'}"> Resolved <span class="arrow" :class="sortOrders['resolvedDiscrepancies'] > 0 ? 'asc' : 'dsc'"></th>
-        <th @click="sortBy('isReady')" :class="{active: sortKey == 'isReady'}"> Ready? <span class="arrow" :class="sortOrders['isReady'] > 0 ? 'asc' : 'dsc'"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="audit in audits
-        | filterBy filter
-        | orderBy sortKey sortOrders[sortKey]"
-        @click="$router.go({name: 'audit', params: { patientId: audit.patientId }})">
-        <td>{{ audit.auditorB }}</td>
-        <td>{{ audit.providerId }}</td>
-        <td>{{ audit.patientId }}</td>
-        <td>{{ audit.discrepancies }}</td>
-        <td>{{ audit.resolvedDiscrepancies }}</td>
-        <td>{{ audit.isReady }}</td>
-      </tr>
-    </tbody>
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <th @click="sortBy('auditorB')" :class="{active: sortKey == 'auditorB'}"> B Auditor <span class="arrow" :class="sortOrders['auditorB'] > 0 ? 'asc' : 'dsc'"></th>
+          <th @click="sortBy('providerId')" :class="{active: sortKey == 'providerId'}"> Provider <span class="arrow" :class="sortOrders['providerId'] > 0 ? 'asc' : 'dsc'"></th>
+          <th @click="sortBy('patientId')" :class="{active: sortKey == 'patientId'}"> Patient ID <span class="arrow" :class="sortOrders['patientId'] > 0 ? 'asc' : 'dsc'"></th>
+          <th @click="sortBy('discrepancies')" :class="{active: sortKey == 'discrepancies'}"> Discrepancies <span class="arrow" :class="sortOrders['discrepancies'] > 0 ? 'asc' : 'dsc'"></th>
+          <th @click="sortBy('resolvedDiscrepancies')" :class="{active: sortKey == 'resolvedDiscrepancies'}"> Resolved <span class="arrow" :class="sortOrders['resolvedDiscrepancies'] > 0 ? 'asc' : 'dsc'"></th>
+          <th @click="sortBy('isReady')" :class="{active: sortKey == 'isReady'}"> Ready? <span class="arrow" :class="sortOrders['isReady'] > 0 ? 'asc' : 'dsc'"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="audit in audits
+          | filterBy filter
+          | orderBy sortKey sortOrders[sortKey]"
+          @click="$router.go({name: 'audit', params: { patientId: audit.patientId }})">
+          <td>{{ audit.auditorB }}</td>
+          <td>{{ audit.providerId }}</td>
+          <td>{{ audit.patientId }}</td>
+          <td>{{ audit.discrepancies }}</td>
+          <td>{{ audit.resolvedDiscrepancies }}</td>
+          <td>{{ audit.isReady }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </template>
 

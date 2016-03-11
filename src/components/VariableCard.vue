@@ -4,18 +4,19 @@
   <div class="content">
     <table>
       <tr>
-        <th>Auditor 1</th>
-        <th>{{ audit.auditorB }}</th>
-      </tr>
-      <tr>
-        <td @click="resolution = variable.aAnswer"
+        <th @click="resolution = variable.aAnswer"
           class="answerCell">
+          Auditor 1<br />
           {{ variable.aAnswer }}
-        </td>
-        <td @click="resolution = variable.bAnswer"
+          <span v-if="resolution === variable.aAnswer" class="green">&#10004;</span>
+        </th>
+        <th @click="resolution = variable.bAnswer"
           class="answerCell">
+          {{ audit.auditorB }}<br />
           {{ variable.bAnswer }}
-        </td>
+          <span v-if="resolution === variable.bAnswer" class="green">&#10004;</span>
+
+        </th>
       </tr>
       <tr>
         <td colspan="2"><input v-model="resolution"></td>
