@@ -14,10 +14,9 @@
 <script>
 import Import from './Import.vue'
 import PrimaryNav from './PrimaryNav.vue'
+import VariableCard from './VariableCard.vue'
 import store from './../store'
 import XLSX from 'xlsx-browserify-shim'
-
-window.XLSX = XLSX
 
 export default {
   computed: {
@@ -27,7 +26,8 @@ export default {
   },
   components: {
     Import,
-    PrimaryNav
+    PrimaryNav,
+    VariableCard
   },
   store
 }

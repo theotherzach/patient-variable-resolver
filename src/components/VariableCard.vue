@@ -1,4 +1,5 @@
 <template>
+
 <div class="variableCard">
   <div class="title" :class="{ resolved: variable.resolution }">{{ variable.name }}</div>
   <div class="content">
@@ -21,8 +22,24 @@
       <tr>
         <td colspan="2"><input v-model="resolution"></td>
       </tr>
-      <tr>
-        <td colspan="2"><button @click="resolve">Resolve</button></td>
+      <tr v-if="resolution">
+        <td colspan="2">
+          <div v-if="globalResolve.resolution !== resolution">
+            <strong>Danger Zone!</strong><br>
+            <div v-if="!saftey">
+              Clicking again will resolve this variable for all patients.
+            </div>
+            <button v-if="saftey" @click="saftey = false">
+              Resolve All
+            </button>
+            <button v-if="!saftey" @click="resolveAll">Resolve All</button>
+          </div>
+
+          <div v-if="globalResolve.resolution === resolution">
+            This variable has been resolved for all patients.
+            <span class="green">&#10004;</span>
+          </div>
+        </td>
       </tr>
     </table>
   </div>
@@ -35,7 +52,27 @@
 
     data() {
       return {
-        resolution: this.variable.resolution
+        saftey: true,
+      }
+    },
+
+    computed: {
+      resolution: {
+        get() {
+          return this.variable.resolution
+        },
+
+        set(newVal) {
+          this.resolve(newVal)
+        },
+      },
+
+      globalResolve() {
+        return this.globalResolves
+        .filter(resolve => {
+          console.log('globalResolve: ', resolve.variableName, this.variable.name);
+          return resolve.variableName === this.variable.name
+        })[0] || {}
       }
     },
 
@@ -45,9 +82,20 @@
     },
 
     vuex: {
+      getters: {
+        globalResolves(state) {
+          console.log('state: ', state)
+          return state.globalResolves
+        },
+      },
+
       actions: {
-        resolve({ dispatch }) {
-          dispatch('RESOLVE', this.variable, this.resolution)
+        resolveAll({ dispatch }) {
+          dispatch('RESOLVE_ALL', this.variable, this.resolution)
+        },
+
+        resolve({ dispatch }, resolution) {
+          dispatch('RESOLVE', this.variable, resolution)
         }
       }
     }

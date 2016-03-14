@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import store from '../store'
 import sheetKeys from '../sheet-keys'
 import exportCsv from '../export-csv'
 
@@ -61,14 +60,14 @@ export default {
 
   data() {
     const sortOrders = {}
-    const keys = Object.keys(store.state.audits[0])
+    const keys = Object.keys(this.audits[0])
     keys.forEach(key =>  sortOrders[key] = 1)
 
     return {
       filter: '',
       sortKey: '',
       sortOrders: sortOrders,
-      audits: store.state.audits
+      audits: this.audits
     }
   },
 
@@ -101,6 +100,14 @@ export default {
         return memo += remainingDiscrepancies
       }, 0)
     },
+  },
+
+  vuex: {
+    getters: {
+      audits(state) {
+        return state.audits
+      }
+    }
   }
 }
 </script>

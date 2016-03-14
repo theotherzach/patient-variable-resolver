@@ -73,12 +73,14 @@ function makeAudits(sheetB, sheetA) {
 }
 
 const store = new Vuex.Store({
-  strict: true,
-
   state: {
     sheetA: [],
     sheetB: [],
     audits: [],
+    globalResolves: [],
+  },
+
+  getters: {
   },
 
   mutations: {
@@ -94,6 +96,24 @@ const store = new Vuex.Store({
       if (state.sheetA[0]) {
         state.audits = makeAudits(state.sheetB, state.sheetA)
       }
+    },
+
+    RESOLVE_ALL(state, variable, resolution) {
+      state.audits.forEach(audit => {
+        if (audit.discrepancies === 0) return
+
+        audit.variables.forEach(vari => {
+          if (vari.name !== variable.name) return
+          if (vari.aAnswer === vari.bAnswer) return
+
+          vari.resolution = resolution
+        })
+      })
+
+      state.globalResolves.push({
+        variableName: variable.name,
+        resolution
+      })
     },
 
     RESOLVE(state, variable, resolution) {

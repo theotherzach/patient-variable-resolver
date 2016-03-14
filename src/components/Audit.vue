@@ -56,25 +56,20 @@ export default {
       return this.audit.variables.filter(variable => {
         return variable.aAnswer !== variable.bAnswer 
       })
-    }
+    },
 
-  },
-
-  vuex: {
-    state: {
-
-      audit(state) {
-        return state.audits.filter(audit => {
-            return audit.patientId === this.$route.params.patientId
-        })[0]
-      },
+    audit() {
+      return this.audits.filter(audit => {
+        return audit.patientId === this.$route.params.patientId
+      })[0]
+    },
 
       nextPtId(state) {
-        const index = state.audits.indexOf(this.audit)
+        const index = this.audits.indexOf(this.audit)
         let nextPtId = null
-        for (let i = index + 1; i < state.audits.length; i++) {
-          if (state.audits[i] && !state.audits[i].isReady) {
-            nextPtId = state.audits[i].patientId
+        for (let i = index + 1; i < this.audits.length; i++) {
+          if (this.audits[i] && !this.audits[i].isReady) {
+            nextPtId = this.audits[i].patientId
             break
           }
         }
@@ -82,14 +77,24 @@ export default {
         if (nextPtId) { return nextPtId }
 
         for (let i = 0; i < index; i++) {
-          if (!state.audits[i].isReady) {
-            nextPtId = state.audits[i].patientId
+          if (!this.audits[i].isReady) {
+            nextPtId = this.audits[i].patientId
             break
           }
         }
 
         return nextPtId
       }
+
+  },
+
+  vuex: {
+    state: {
+
+      audits(state) {
+        return state.audits
+      }
+
 
     }
   }
