@@ -61,11 +61,7 @@ function makeAudits(sheetB, sheetA) {
         .length
       },
       get isReady () {
-        return this.variables
-        .every(variable => {
-          return variable.aAnswer === variable.bAnswer
-            || variable.resolution
-        })
+        return this.discrepancies === this.resolvedDiscrepancies
       },
       variables: variables
     }
