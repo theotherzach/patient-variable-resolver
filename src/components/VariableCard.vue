@@ -27,7 +27,7 @@
           <div v-if="globalResolve.resolution !== resolution">
             <strong>Danger Zone!</strong><br>
             <div v-if="!saftey">
-              Clicking again will resolve this variable for all patients.
+              Clicking again will set the same this variable to {{ resolution }} for all patients.
             </div>
             <button v-if="saftey" @click="saftey = false">
               Resolve All

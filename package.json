@@ -16,7 +16,9 @@
     ]
   },
   "dependencies": {
-    "vue": "^1.0.17"
+    "vue": "^1.0.17",
+    "vue-router": "^0.7.11",
+    "vuex": "^0.6.2"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -30,6 +32,7 @@
     "cross-env": "^1.0.5",
     "eslint": "^1.10.3",
     "eslint-plugin-html": "^1.1.0",
+    "gh-pages": "^0.11.0",
     "http-server": "^0.8.5",
     "jasmine-core": "^2.4.1",
     "jszip": "^2.5.0",
@@ -43,10 +46,8 @@
     "proxyquireify": "^3.0.1",
     "uglify-js": "^2.5.0",
     "vue-hot-reload-api": "^1.2.2",
-    "vue-router": "^0.7.11",
     "vueify": "^8.0.0",
     "vueify-insert-css": "^1.0.0",
-    "vuex": "^0.6.2",
     "watchify": "^3.4.0",
     "xlsx": "^0.8.0",
     "xlsx-browserify-shim": "0.0.5"
