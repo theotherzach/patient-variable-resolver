@@ -106,6 +106,14 @@ const store = new Vuex.Store({
         })
       })
 
+      let resolve = state.globalResolves
+      .find(resolve => variable.name === resolve.variableName)
+
+      if (resolve) {
+        resolve.resolution = resolution
+        return
+      }
+
       state.globalResolves.push({
         variableName: variable.name,
         resolution
