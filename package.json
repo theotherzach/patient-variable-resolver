@@ -7,7 +7,8 @@
     "dev": "watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js & http-server -c 1 -a localhost",
     "build": "cross-env NODE_ENV=production browserify -e src/main.js | uglifyjs -c warnings=false -m > dist/build.js",
     "lint": "eslint --ext .js,.vue src test/unit",
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js",
+    "deploy": "npm run-script build && node_modules/.bin/gh-pages -d ./"
   },
   "browserify": {
     "transform": [
